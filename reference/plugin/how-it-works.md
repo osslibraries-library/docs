@@ -4,11 +4,11 @@ The plugin's task, `ossScanLicenses`, runs a small pipeline on every build. Each
 
 ## 1. Find dependencies
 
-The scanner looks for `oh-package.json5` files inside every `oh_modules/` directory in the project. It finds both flat packages (`oh_modules/foo/`) and scoped ones (`oh_modules/@scope/bar/`).
+The scanner looks for `oh-package.json5` files inside every `oh_modules/` directory in the project. It finds both flat packages (`oh_modules/foo/`) and scoped ones (`oh_modules/@scope/bar/`). With the `includeOhpmCache` option, it also walks `oh_modules/.ohpm/` — OHPM's internal package store, where each package's physical copy lives at `.ohpm/<name>@<version>/oh_modules/<name>/`; transitive versions that are not hoisted to a top-level entry exist only there.
 
 ## 2. Normalize the manifest
 
-Each manifest is JSON5 and loosely typed. `author`, `repository`, and `license` each accept several shapes — string or object, string or array. The scanner normalizes them once into a strict model and works with that everywhere else.
+Each manifest is JSON5 and loosely typed. `author`, `repository`, and `license` each accept several shapes — string or object, string or array. The scanner normalizes them once into a strict model and works with that everywhere else. An unreadable or malformed manifest is skipped and reported in the build log, so the rest of the license data still generates.
 
 ## 3. Resolve licenses
 
@@ -32,4 +32,4 @@ Libraries are sorted by name, then by version with semver-aware ordering. The re
 
 ## Which modules are excluded
 
-The module the plugin is registered on is always removed from the list, because its dependencies are the project's own modules, not third-party libraries. Exclude additional local modules with `selfModules` (see [Configuration](/reference/plugin/configuration)).
+The module the plugin is registered on is always removed from the list, because its dependencies are the project's own modules, not third-party libraries. Exclude additional local modules with `selfModules` (see [Configuration](/guide/plugin/configuration)).

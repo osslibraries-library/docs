@@ -4,11 +4,11 @@
 
 ## 1. 查找依赖
 
-扫描器在项目的每个 `oh_modules/` 目录中查找 `oh-package.json5` 文件，覆盖普通包（`oh_modules/foo/`）与作用域包（`oh_modules/@scope/bar/`）。
+扫描器在项目的每个 `oh_modules/` 目录中查找 `oh-package.json5` 文件，覆盖普通包（`oh_modules/foo/`）与作用域包（`oh_modules/@scope/bar/`）。开启 `includeOhpmCache` 后，还会遍历 `oh_modules/.ohpm/`——OHPM 的内部包仓库，每个包的实体副本位于 `.ohpm/<name>@<version>/oh_modules/<name>/`；未被提升到顶层的传递依赖版本只存在于这里。
 
 ## 2. 规范化清单
 
-每个清单均为 JSON5，字段类型不统一：`author`、`repository`、`license` 各有多种形态（字符串或对象、字符串或数组）。扫描器将其统一规范化为严格的模型，后续步骤均基于该模型。
+每个清单均为 JSON5，字段类型不统一：`author`、`repository`、`license` 各有多种形态（字符串或对象、字符串或数组）。扫描器将其统一规范化为严格的模型，后续步骤均基于该模型。无法读取或解析失败的清单会被跳过并在构建日志中告警，其余数据照常生成。
 
 ## 3. 解析许可证
 
@@ -32,4 +32,4 @@
 
 ## 哪些模块会被排除
 
-注册插件所在的模块总是会从列表移除，因为其依赖属于项目自身的模块，而非第三方库。需排除其他本地模块时，使用 `selfModules` 配置，见[配置](/zh/reference/plugin/configuration)。
+注册插件所在的模块总是会从列表移除，因为其依赖属于项目自身的模块，而非第三方库。需排除其他本地模块时，使用 `selfModules` 配置，见[配置](/zh/guide/plugin/configuration)。

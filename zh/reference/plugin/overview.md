@@ -21,5 +21,5 @@
 ## 开始使用
 
 - [安装](/zh/guide/plugin/installation)
-- [配置](/zh/reference/plugin/configuration)
+- [配置](/zh/guide/plugin/configuration)
 - [插件 API 参考](/zh/reference/plugin/api)

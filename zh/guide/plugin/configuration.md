@@ -4,11 +4,12 @@
 
 ## 选项
 
-| 选项          | 类型           | 默认值                                          |
-| ------------- | -------------- | ----------------------------------------------- |
-| `selfModules` | `string[]`     | `[]` —— 注册插件所在的模块总是会被自动排除      |
-| `outputFile`  | `string`       | `src/main/resources/rawfile/osslibraries.<ext>` |
-| `format`      | `OutputFormat` | `OutputFormat.JSON`                             |
+| 选项               | 类型           | 默认值                                     |
+| ------------------ | -------------- | ------------------------------------------ |
+| `selfModules`      | `string[]`     | `[]` —— 注册插件所在的模块总是会被自动排除 |
+| `includeOhpmCache` | `boolean`      | `false`                                    |
+| `outputFile`       | `string`       | `src/main/resources/rawfile/osslibraries.<ext>` |
+| `format`           | `OutputFormat` | `OutputFormat.JSON`                        |
 
 ## selfModules
 
@@ -17,6 +18,16 @@
 ```ts
 plugins: [ossScanPlugin({ selfModules: ["mylibrary", "3rdlibrary"] })];
 ```
+
+## includeOhpmCache
+
+额外扫描 `oh_modules/.ohpm`——OHPM 的内部包仓库，每个包的实体副本存放在 `.ohpm/<name>@<version>/oh_modules/<name>/`，并通过符号链接挂载在 `oh_modules/<name>`。未被提升到顶层的传递依赖版本只存在于内部仓库中：
+
+```ts
+plugins: [ossScanPlugin({ includeOhpmCache: true })];
+```
+
+需要完整覆盖时声明此选项：同一依赖的所有已装版本——包括冲突的传递版本——都会并列进入许可证数据。
 
 ## outputFile
 

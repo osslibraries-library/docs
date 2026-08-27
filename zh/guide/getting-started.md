@@ -174,6 +174,6 @@ this.getUIContext().getRouter().pushNamedRoute({
 
 ## 接下来
 
-- [配置](/zh/reference/plugin/configuration) —— 扫描器选项与输出格式。
+- [配置](/zh/guide/plugin/configuration) —— 扫描器选项与输出格式。
 - [预定义 UI（穿戴设备）](/zh/guide/library/wearable) —— 面向手表屏幕的独立模块。
 - [自定义 UI](/zh/guide/library/custom-ui) —— 用自定义页面渲染数据。

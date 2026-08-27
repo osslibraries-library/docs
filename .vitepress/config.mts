@@ -58,6 +58,7 @@ export default defineConfig({
               text: "Hvigor Plugin",
               items: [
                 { text: "Install", link: "/guide/plugin/installation" },
+                { text: "Configuration", link: "/guide/plugin/configuration" },
                 { text: "Use the Plugin Programmatically", link: "/guide/plugin/programmatic" },
               ],
             },
@@ -67,7 +68,6 @@ export default defineConfig({
               text: "Reference",
               items: [
                 { text: "Data Model", link: "/reference/data-model" },
-                { text: "Plugin Options", link: "/reference/plugin/configuration" },
                 { text: "Output Formats", link: "/reference/plugin/output-formats" },
                 { text: "Library API", link: "/reference/library/api" },
                 { text: "Hvigor Plugin API", link: "/reference/plugin/api" },
@@ -136,6 +136,7 @@ export default defineConfig({
               text: "Hvigor Plugin",
               items: [
                 { text: "安装", link: "/zh/guide/plugin/installation" },
+                { text: "配置", link: "/zh/guide/plugin/configuration" },
                 { text: "编程式调用", link: "/zh/guide/plugin/programmatic" },
               ],
             },
@@ -145,7 +146,6 @@ export default defineConfig({
               text: "参考",
               items: [
                 { text: "数据模型", link: "/zh/reference/data-model" },
-                { text: "插件选项", link: "/zh/reference/plugin/configuration" },
                 { text: "输出格式", link: "/zh/reference/plugin/output-formats" },
                 { text: "Library API", link: "/zh/reference/library/api" },
                 { text: "Hvigor Plugin API", link: "/zh/reference/plugin/api" },

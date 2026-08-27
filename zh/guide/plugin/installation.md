@@ -48,7 +48,7 @@ export default {
 };
 ```
 
-注册后，插件会在 `CompileArkTS` 之前注册名为 `ossScanLicenses` 的任务。每次构建，该任务扫描 `oh_modules/`，并将元数据写入 `src/main/resources/rawfile/osslibraries.json`。
+注册后，插件会注册名为 `ossScanLicenses` 的任务；该任务经 postDependencies 排在模块的 `CompileArkTS` 之后、资源打包之前。每次构建，该任务扫描 `oh_modules/`，并将元数据写入 `src/main/resources/rawfile/osslibraries.json`。
 
 ## 验证
 

@@ -21,5 +21,5 @@ It is the build-time half of the project. See [Architecture](/reference/architec
 ## Get started
 
 - [Installation](/guide/plugin/installation)
-- [Configuration](/reference/plugin/configuration)
+- [Configuration](/guide/plugin/configuration)
 - [Plugin API Reference](/reference/plugin/api)

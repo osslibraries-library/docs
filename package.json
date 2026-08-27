@@ -10,14 +10,14 @@
     "preview": "vitepress preview"
   },
   "devDependencies": {
-    "@types/node": "^26.2.0",
+    "@types/node": "^26.3.0",
     "vitepress": "^2.0.0-alpha.19",
     "vitepress-plugin-group-icons": "^1.7.6"
   },
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
-      "version": "11.22.0",
+      "version": "11.24.0",
       "onFail": "download"
     }
   }

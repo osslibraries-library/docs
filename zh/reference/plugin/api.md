@@ -17,6 +17,9 @@ ossScanPlugin(options?: OssScanPluginOptions): HvigorPlugin
 **`selfModules`** _(string[]，默认 `[]`)_
 属于项目自身、不应出现在许可证列表中的模块名。注册插件所在的模块总是会被自动排除。
 
+**`includeOhpmCache`** _(boolean，默认 `false`)_
+额外扫描 `oh_modules/.ohpm`——OHPM 存放每个包实体副本的内部包仓库。未被提升到顶层的传递依赖版本只存在于其中；开启后，所有已装版本都会进入许可证数据。
+
 **`outputFile`** _(string)_
 相对模块目录的输出路径。省略时默认为 `src/main/resources/rawfile/osslibraries.<ext>`，其中 `<ext>` 跟随 `format`。
 
@@ -42,7 +45,7 @@ ossScanPlugin(options?: OssScanPluginOptions): HvigorPlugin
 scanProject(projectRoot: string, options?: ScanOptions): ScanResult
 ```
 
-`ScanOptions` 携带 `selfModules?: Set<string>` —— 需要跳过的模块名。默认集合始终包含 `"entry"`，外加你提供的模块。
+`ScanOptions` 携带 `selfModules?: Set<string>` —— 需要跳过的模块名 —— 以及 `includeOhpmCache?: boolean`，用于额外扫描 `oh_modules/.ohpm` 内部包仓库。默认集合始终包含 `"entry"`，外加你提供的模块。
 
 `ScanResult` 有两个字段：
 
@@ -118,7 +121,7 @@ parseOhPackage(obj: Record<string, unknown>): OhPackage
 readOhPackage(filePath: string, fallbackName: string): OhPackage | null
 ```
 
-`parseJson5` 把 JSON5 字符串解析为纯对象。`parseOhPackage` 把原始清单转换为严格的 `OhPackage` 模型，归一化松散类型的 `author`、`repository`、`license` 字段。`readOhPackage` 读取并解析文件，清单缺省名称时回退到 `fallbackName`，文件不可读时返回 `null`。
+`parseJson5` 把 JSON5 字符串解析为纯对象。`parseOhPackage` 把原始清单转换为严格的 `OhPackage` 模型，归一化松散类型的 `author`、`repository`、`license` 字段。`readOhPackage` 读取并解析文件，清单缺省名称时回退到 `fallbackName`，文件不可读或解析失败时返回 `null`。
 
 ## 类型
 

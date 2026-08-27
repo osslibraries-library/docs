@@ -17,6 +17,9 @@ Every field of `OssScanPluginOptions` is optional.
 **`selfModules`** _(string[], default `[]`)_
 Module names that belong to the project and must not appear in the license list. The module the plugin is registered on is always excluded automatically.
 
+**`includeOhpmCache`** _(boolean, default `false`)_
+Also scan `oh_modules/.ohpm`, the internal package store where OHPM keeps every physical package copy. Transitive dependency versions not hoisted to a top-level symlink exist only there; enabling this surfaces every installed version in the license data.
+
 **`outputFile`** _(string)_
 Relative path from the module directory to the output file. When omitted, defaults to `src/main/resources/rawfile/osslibraries.<ext>`, where `<ext>` follows `format`.
 
@@ -42,7 +45,7 @@ Runs the full scan and returns the result.
 scanProject(projectRoot: string, options?: ScanOptions): ScanResult
 ```
 
-`ScanOptions` carries `selfModules?: Set<string>` — module names to skip. The defaults always include `"entry"` in addition to the set.
+`ScanOptions` carries `selfModules?: Set<string>` — module names to skip — and `includeOhpmCache?: boolean` to also scan the `oh_modules/.ohpm` package store. The defaults always include `"entry"` in addition to the set.
 
 `ScanResult` has two fields:
 
@@ -118,7 +121,7 @@ parseOhPackage(obj: Record<string, unknown>): OhPackage
 readOhPackage(filePath: string, fallbackName: string): OhPackage | null
 ```
 
-`parseJson5` parses a JSON5 string into a plain object. `parseOhPackage` converts a raw manifest into the strict `OhPackage` model, normalizing the loosely typed `author`, `repository`, and `license` fields. `readOhPackage` reads and parses a file, falling back to `fallbackName` when the manifest omits its name, and returns `null` when the file is unreadable.
+`parseJson5` parses a JSON5 string into a plain object. `parseOhPackage` converts a raw manifest into the strict `OhPackage` model, normalizing the loosely typed `author`, `repository`, and `license` fields. `readOhPackage` reads and parses a file, falling back to `fallbackName` when the manifest omits its name, and returns `null` when the file is unreadable or unparseable.
 
 ## Types
 

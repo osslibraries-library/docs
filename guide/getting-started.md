@@ -174,6 +174,6 @@ this.getUIContext().getRouter().pushNamedRoute({
 
 ## Next steps
 
-- [Configuration](/reference/plugin/configuration) — scanner options and output formats.
+- [Configuration](/guide/plugin/configuration) — scanner options and output formats.
 - [Prebuilt UI (Wearable)](/guide/library/wearable) — a separate module for watch screens.
 - [Custom UI](/guide/library/custom-ui) — render the data with custom pages.

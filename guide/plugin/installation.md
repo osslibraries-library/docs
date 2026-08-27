@@ -48,7 +48,7 @@ export default {
 };
 ```
 
-The plugin registers a task named `ossScanLicenses` that runs before `CompileArkTS`. On every build it scans `oh_modules/` and writes the metadata to `src/main/resources/rawfile/osslibraries.json`.
+The plugin registers a task named `ossScanLicenses`; via postDependencies it runs after the module's `CompileArkTS`, ahead of resource packaging. On every build it scans `oh_modules/` and writes the metadata to `src/main/resources/rawfile/osslibraries.json`.
 
 ## Verify
 

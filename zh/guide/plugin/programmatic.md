@@ -12,7 +12,7 @@ import { scanProject } from "osslibraries-hvigor-plugin";
 const result = scanProject("/path/to/project", { selfModules: new Set(["entry"]) });
 ```
 
-`result` 具有[数据模型](/zh/reference/data-model)描述的 `{ libraries, licenses }` 结构。把本地模块传给 `selfModules` 以排除自身代码；除此之外，`"entry"` 总是会被排除。
+`result` 具有[数据模型](/zh/reference/data-model)描述的 `{ libraries, licenses }` 结构。把本地模块传给 `selfModules` 以排除自身代码；除此之外，`"entry"` 总是会被排除。设置 `includeOhpmCache: true` 可一并读取 `oh_modules/.ohpm`——OHPM 的内部包仓库——中的依赖，覆盖未被提升到顶层的传递版本。
 
 ## 以某种格式写出结果
 

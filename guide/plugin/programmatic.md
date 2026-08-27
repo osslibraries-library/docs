@@ -12,7 +12,7 @@ import { scanProject } from "osslibraries-hvigor-plugin";
 const result = scanProject("/path/to/project", { selfModules: new Set(["entry"]) });
 ```
 
-`result` has the `{ libraries, licenses }` shape described in [Data Model](/reference/data-model). Pass local modules in `selfModules` to keep local code out of the list; `"entry"` is always excluded on top of the set.
+`result` has the `{ libraries, licenses }` shape described in [Data Model](/reference/data-model). Pass local modules in `selfModules` to keep local code out of the list; `"entry"` is always excluded on top of the set. Set `includeOhpmCache: true` to read dependencies out of `oh_modules/.ohpm` — OHPM's internal package store — as well, covering transitive versions that are not hoisted to the top level.
 
 ## Write the result in a format
 

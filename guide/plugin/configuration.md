@@ -4,11 +4,12 @@
 
 ## Options
 
-| Option        | Type           | Default                                         |
-| ------------- | -------------- | ----------------------------------------------- |
-| `selfModules` | `string[]`     | `[]` — the registered module is always excluded |
-| `outputFile`  | `string`       | `src/main/resources/rawfile/osslibraries.<ext>` |
-| `format`      | `OutputFormat` | `OutputFormat.JSON`                             |
+| Option             | Type           | Default                                         |
+| ------------------ | -------------- | ----------------------------------------------- |
+| `selfModules`      | `string[]`     | `[]` — the registered module is always excluded |
+| `includeOhpmCache` | `boolean`      | `false`                                         |
+| `outputFile`       | `string`       | `src/main/resources/rawfile/osslibraries.<ext>` |
+| `format`           | `OutputFormat` | `OutputFormat.JSON`                             |
 
 ## selfModules
 
@@ -17,6 +18,16 @@ Modules that belong to the project and should not appear in the license list. Th
 ```ts
 plugins: [ossScanPlugin({ selfModules: ["mylibrary", "3rdlibrary"] })];
 ```
+
+## includeOhpmCache
+
+Also scan `oh_modules/.ohpm`, the internal package store where OHPM keeps every physical package copy at `.ohpm/<name>@<version>/oh_modules/<name>/`, mounted at `oh_modules/<name>` through symlinks. Transitive dependency versions that are not hoisted to a top-level symlink live only inside the store:
+
+```ts
+plugins: [ossScanPlugin({ includeOhpmCache: true })];
+```
+
+Declare this option when you need complete coverage: every installed version of a dependency appears in the license data, including conflicting transitive versions listed side by side.
 
 ## outputFile
 
