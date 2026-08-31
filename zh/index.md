@@ -38,7 +38,7 @@ features:
 > ```
 >
 > ```zsh [pnpm]
-> pnpm dlx skills add composable-tu/osslibraries
+> pnx skills add composable-tu/osslibraries
 > ```
 >
 > ```zsh [Yarn]
