@@ -12,7 +12,8 @@
   "devDependencies": {
     "@types/node": "^26.3.0",
     "vitepress": "^2.0.0-alpha.19",
-    "vitepress-plugin-group-icons": "^1.7.6"
+    "vitepress-plugin-group-icons": "^1.7.6",
+    "vitepress-plugin-llms": "^1.13.5"
   },
   "devEngines": {
     "packageManager": {

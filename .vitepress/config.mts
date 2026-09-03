@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { defineConfig } from "vitepress";
 import { groupIconMdPlugin, groupIconVitePlugin } from "vitepress-plugin-group-icons";
+import llmstxt, {copyOrDownloadAsMarkdownButtons} from "vitepress-plugin-llms";
 
 const readSvg = (name: string) =>
   readFileSync(new URL(`./theme/icons/${name}`, import.meta.url), "utf8")
@@ -229,6 +230,7 @@ export default defineConfig({
     },
     config(md) {
       md.use(groupIconMdPlugin);
+      md.use(copyOrDownloadAsMarkdownButtons);
     },
   },
 
@@ -244,7 +246,7 @@ export default defineConfig({
             dark: readSvg("vlt-light.svg"),
           },
         },
-      }),
+      }), llmstxt()
     ],
   },
 });
